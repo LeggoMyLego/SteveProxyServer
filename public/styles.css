@@ -3,8 +3,8 @@
   padding: 0;
   box-sizing: border-box;
 }
-#main {
-  display:flex;
-  justify-content: space-evenly;
-  ;
+#main > div {
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
