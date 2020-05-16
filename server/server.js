@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/api/images/:id', (req, res) => {
   axios
-    .get(`http://localhost:3001/api/images/${req.params.id}`)
+    .get(`http://gallerycontainer/api/images/${req.params.id}`)
     .then((response) => {
       res.status(200).send(response.data);
     })
@@ -40,7 +40,7 @@ app.get('/product/:id', (req, res) => {
 app.get('/product/:id/:find-store', (req, res) => {
   axios
     .get(
-      `http://localhost:3002git /product/${req.params.id}/find-store/?q=${req.query.q}`,
+      `http://localhost:3002/product/${req.params.id}/find-store/?q=${req.query.q}`,
     )
     .then((response) => {
       res.status(200).send(response.data);
