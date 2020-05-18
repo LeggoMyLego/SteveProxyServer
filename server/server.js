@@ -28,27 +28,17 @@ app.get('/api/images/:id', (req, res) => {
 });
 
 app.get('/product/:id', (req, res) => {
-  axios
-    .get(`http://54.219.31.175:3002/product/${req.params.id}`)
-    .then((response) => {
-      res.status(200).send(response.data);
-    })
-    .catch((err) => {
-      res.status(500).send(err);
+  axios.get(`http://54.219.31.175:3002/product/${req.params.id}`)
+    .then((response) => res.status(200).send(response.data))
+    .catch((error) => {
+      res.status(500).send(error);
     });
 });
 
-app.get('/product/:id/:find-store', (req, res) => {
-  axios
-    .get(
-      `http://54.219.31.175:3002/${req.params.id}/find-store/?q=${req.query.q}`,
-    )
-    .then((response) => {
-      res.status(200).send(response.data);
-    })
-    .catch((err) => {
-      res.status(500).send(err);
-    });
+app.get('/product/:id/find-store', (req, res) => {
+  axios.get(`http://54.219.31.175:3002/product/${req.params.id}/find-store/?q=${req.query.q}`)
+    .then((response) => res.status(200).send(response.data))
+    .catch((error) => res.status(500).send(error));
 });
 
 app.get('/api/products/:product_id/reviews', (req, res) => {
