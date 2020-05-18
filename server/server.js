@@ -1,4 +1,5 @@
 const express = require('express');
+const compression = require('compression');
 
 const app = express();
 const path = require('path');
@@ -9,7 +10,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 app.use(cors());
-
+app.use(compression());
 app.use(express.static(path.join(__dirname, '../public/')));
 
 app.use(bodyParser.json());
@@ -17,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/api/images/:id', (req, res) => {
   axios
-    .get(`http://localhost:3001/api/images/${req.params.id}`)
+    .get(`http://54.176.112.170:3001/api/images/${req.params.id}`)
     .then((response) => {
       res.status(200).send(response.data);
     })
@@ -28,7 +29,7 @@ app.get('/api/images/:id', (req, res) => {
 
 app.get('/product/:id', (req, res) => {
   axios
-    .get(`http://localhost:3002/product/${req.params.id}`)
+    .get(`http://54.219.31.175:3002/product/${req.params.id}`)
     .then((response) => {
       res.status(200).send(response.data);
     })
@@ -40,7 +41,7 @@ app.get('/product/:id', (req, res) => {
 app.get('/product/:id/:find-store', (req, res) => {
   axios
     .get(
-      `http://localhost:3002git /product/${req.params.id}/find-store/?q=${req.query.q}`,
+      `http://54.219.31.175:3002/${req.params.id}/find-store/?q=${req.query.q}`,
     )
     .then((response) => {
       res.status(200).send(response.data);
@@ -52,7 +53,7 @@ app.get('/product/:id/:find-store', (req, res) => {
 
 app.get('/api/products/:product_id/reviews', (req, res) => {
   axios
-    .get(`http://localhost:8080/api/products/${req.params.product_id}/reviews`)
+    .get(`http://52.9.106.137:8080/api/products/${req.params.product_id}/reviews`)
     .then((response) => {
       res.status(200).send(response.data);
     })
@@ -64,7 +65,7 @@ app.get('/api/products/:product_id/reviews', (req, res) => {
 app.get('/api/products/:product_id/reviews/:review_id', (req, res) => {
   axios
     .get(
-      `http://localhost:8080/api/products/${req.params.product_id}/reviews/${req.params.review_id}`,
+      `http://52.9.106.137:8080/api/products/${req.params.product_id}/reviews/${req.params.review_id}`,
     )
     .then((response) => {
       res.status(200).send(response.data);
@@ -77,7 +78,7 @@ app.get('/api/products/:product_id/reviews/:review_id', (req, res) => {
 app.put('/api/products/:product_id/reviews/:review_id', (req, res) => {
   axios({
     method: 'PUT',
-    url: `http://localhost:8080/api/products/${req.params.product_id}/reviews/${req.params.review_id}`,
+    url: `http://52.9.106.137:8080/api/products/${req.params.product_id}/reviews/${req.params.review_id}`,
     data: req.body,
   })
     .then((response) => {
